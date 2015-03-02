@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.internal.FindsById;
 import org.openqa.selenium.internal.FindsByName;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,9 @@ public class FirstJUnit {
     private WebDriver selenium;
     @Before
     public void setup() {
-        selenium = new FirefoxDriver();
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("browser.startup.homepage", "http://book.theautomatedtester.co.uk/chapter4");
+        selenium = new FirefoxDriver(profile);
     }
 
     @Test
@@ -54,7 +57,7 @@ public class FirstJUnit {
 
     @Test
     public void testExampleChap4(){
-        selenium.get("http://book.theautomatedtester.co.uk/chapter4");
+//        selenium.get("http://book.theautomatedtester.co.uk/chapter4");
         WebElement element = selenium.findElement((By.id("nextBid")));
         element.sendKeys("100");
     }
