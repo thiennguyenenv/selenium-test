@@ -36,6 +36,6 @@ public class Chapter2 extends LoadableComponent<Chapter2> {
     @Override
     protected void isLoaded() throws Error {
         String url = selenium.getCurrentUrl();
-        Assert.assertTrue("Not on the right page.", url.contains("chapter2"));
+        Assert.assertTrue("Not on the issue entry page: " + url, url.endsWith("/chapter2"));
     }
 }
