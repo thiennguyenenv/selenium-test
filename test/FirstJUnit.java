@@ -17,6 +17,7 @@ public class FirstJUnit {
     public void setup() {
         selenium = new FirefoxDriver();
     }
+
     @Test
     public void shouldCheckButtonOnChapter2Page() {
         loadHomePage();
@@ -28,15 +29,15 @@ public class FirstJUnit {
         selenium.findElement(By.linkText("Chapter2")).click();
     }
 
-    private void loadHomePage() {
+    private HomePage loadHomePage() {
         selenium.get("http://book.theautomatedtester.co.uk");
+        return new HomePage(selenium);
     }
 
     @Test
     public void shouldCheckAnotherButtonOnChapter2Page(){
-        loadHomePage();
-        clickAndLoadChapter2();
-        Assert.assertEquals(selenium.findElements(By.name("verifybutton")).size(), 1);
+        Chapter2 ch2 = loadHomePage().clickChapter2();
+        Assert.assertTrue(ch2.isButtonPresent("but1"));
     }
 
     @After
