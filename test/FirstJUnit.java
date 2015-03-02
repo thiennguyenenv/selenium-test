@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Thien (Theodore) on 3/2/2015.
@@ -21,12 +22,13 @@ public class FirstJUnit {
     @Test
     public void shouldCheckButtonOnChapter2Page() {
         loadHomePage();
-        clickAndLoadChapter2();
-        Assert.assertEquals(selenium.findElements(By.id("but1")).size(), 1);
+        Chapter2 ch2 = clickAndLoadChapter2();
+        Assert.assertTrue(ch2.isButtonPresent("but1"));
     }
 
-    private void clickAndLoadChapter2() {
+    private Chapter2 clickAndLoadChapter2() {
         selenium.findElement(By.linkText("Chapter2")).click();
+        return PageFactory.initElements(selenium, Chapter2.class);
     }
 
     private HomePage loadHomePage() {
