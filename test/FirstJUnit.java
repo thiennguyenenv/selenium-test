@@ -21,8 +21,7 @@ public class FirstJUnit {
 
     @Test
     public void shouldCheckButtonOnChapter2Page() {
-        loadHomePage();
-        Chapter2 ch2 = clickAndLoadChapter2();
+        Chapter2 ch2 = new Chapter2(selenium).get();
         Assert.assertTrue(ch2.isButtonPresent("but1"));
     }
 
