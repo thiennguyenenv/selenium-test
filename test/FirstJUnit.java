@@ -52,6 +52,13 @@ public class FirstJUnit {
         ((FindsByName)selenium).findElementByName("verifybutton");
     }
 
+    @Test
+    public void testExampleChap4(){
+        selenium.get("http://book.theautomatedtester.co.uk/chapter4");
+        WebElement element = selenium.findElement((By.id("nextBid")));
+        element.sendKeys("100");
+    }
+
     @After
     public void teardown(){
         selenium.quit();
