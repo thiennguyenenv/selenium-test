@@ -1,3 +1,4 @@
+import com.google.common.primitives.Bytes;
 import com.opera.core.systems.scope.protos.ExecProtos;
 import org.junit.After;
 import org.junit.Before;
@@ -6,6 +7,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Thien (Theodore) on 3/3/2015.
@@ -24,8 +28,12 @@ public class FirstDragDropTest {
     }
 
     @Test
-    public void testCapture(){
-        String screenshotBase64 = ((TakesScreenshot)selenium).getScreenshotAs(OutputType.BASE64);
+    public void testCapture() throws IOException {
+//        String screenshotBase64 = ((TakesScreenshot)selenium).getScreenshotAs(OutputType.BASE64);
+        byte[] screenBytes = ((TakesScreenshot)selenium).getScreenshotAs(OutputType.BYTES);
+        FileOutputStream fos = new FileOutputStream("screenshot.png");
+        fos.write(screenBytes);
+        fos.close();
     }
 
     @Test
